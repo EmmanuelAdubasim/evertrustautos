@@ -48,8 +48,6 @@ function carItem({
 
 // ============================
 // Inventory (YOUR CURRENT PRODUCTS)
-// - images: merged interior/exterior, add at least 4
-// - videoUrl: optional. If missing => button shows "DM for Live Video"
 // ============================
 const CARS = [
   carItem({
@@ -66,7 +64,7 @@ const CARS = [
       "assets/cars/lexus-rx350-2018-3.jpg",
       "assets/cars/lexus-rx350-2018-4.jpg"
     ],
-    videoUrl: "" // add later if you have a link
+    videoUrl: ""
   }),
 
   carItem({
@@ -165,9 +163,6 @@ const CARS = [
     ]
   })
 ];
-
-// Brands coming soon (not in inventory yet)
-const COMING_SOON_BRANDS = ["Hyundai", "Honda"];
 
 // ============================
 // Helpers

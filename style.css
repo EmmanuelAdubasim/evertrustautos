@@ -93,17 +93,43 @@ img{ max-width: 100%; display:block; }
 }
 
 .brand{ display:flex; align-items:center; gap:12px; }
-.brand__logo{
-  width: 46px; height: 46px; border-radius: 14px;
-  display:grid; place-items:center;
-  background: linear-gradient(180deg, rgba(11,94,215,.18), rgba(255,255,255,1));
-  border: 1px solid var(--border);
-  font-weight: 900;
-  color: var(--primary);
-}
 .brand__text{ display:flex; flex-direction: column; line-height: 1.15; }
 .brand__name{ font-weight: 900; letter-spacing: .2px; }
 .brand__tag{ font-size: 12px; color: var(--muted); }
+
+/* ===== Logo styling ===== */
+.brand__logoWrap{
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  overflow: hidden;
+  display:grid;
+  place-items:center;
+  flex: 0 0 auto;
+  position: relative;
+}
+.brand__logoImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.brand__logoFallback{
+  display:none;
+  width: 100%;
+  height: 100%;
+  place-items:center;
+  font-weight: 900;
+  color: var(--primary);
+  background: linear-gradient(180deg, rgba(11,94,215,.18), rgba(255,255,255,1));
+}
+.brand__logoWrap.isFallback .brand__logoFallback{
+  display:grid;
+}
+.brand__logoWrap.isFallback .brand__logoImg{
+  display:none;
+}
 
 .nav{ display:flex; gap: 18px; }
 .nav a{
@@ -526,6 +552,23 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   gap: 14px;
 }
 
+/* ===== Footer credit ===== */
+.footer__right{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.footerCredit{ margin:0; }
+.creditLink{
+  color: var(--muted);
+  border-bottom: 1px dashed rgba(11,26,42,.25);
+}
+.creditLink:hover{
+  color: var(--text);
+  border-bottom-color: rgba(11,26,42,.45);
+}
+
 .floatWA{
   position: fixed;
   right: 14px;
@@ -548,14 +591,12 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   border-top: 1px solid rgba(11,94,215,.12);
   border-bottom: 1px solid rgba(11,94,215,.12);
 }
-
 .referral__inner{
   display:grid;
   grid-template-columns: 1.15fr .85fr;
   gap: 16px;
   align-items: start;
 }
-
 .refBadge{
   display:inline-flex;
   align-items:center;
@@ -569,18 +610,15 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   font-size: 12px;
   margin-bottom: 10px;
 }
-
 .referral__lead{
   font-size: 16px;
   margin-top: 8px;
   margin-bottom: 12px;
 }
-
 .refMoney{
   color: var(--primary);
   font-weight: 1000;
 }
-
 .refList{
   margin: 0;
   padding-left: 18px;
@@ -589,7 +627,6 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   flex-direction: column;
   gap: 8px;
 }
-
 .refCtas{
   display:flex;
   gap: 12px;
@@ -597,7 +634,6 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   margin-top: 16px;
   margin-bottom: 10px;
 }
-
 .referral__card{
   background: #fff;
   border: 1px solid var(--border);
@@ -605,7 +641,6 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   padding: 16px;
   box-shadow: var(--shadow);
 }
-
 .refNote{
   margin-top: 12px;
   padding: 12px;
@@ -631,4 +666,6 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   .contactCards{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: 1fr; }
   .hero h1{ font-size: 36px; }
+  .footer__inner{ flex-direction: column; align-items: flex-start; }
+  .footer__right{ align-items: flex-start; }
 }
