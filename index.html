@@ -1,407 +1,515 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evertrust Autos | Owerri • Grade 1 Cars</title>
-  <meta name="description" content="Evertrust Autos in Owerri, Imo State — Foreign Used & NG Used vehicles. Luxury, affordable, verified options. DM for live video inspection." />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evertrust Autos | Owerri • Grade 1 Cars</title>
+    <meta
+      name="description"
+      content="Evertrust Autos in Owerri, Imo State — Foreign Used & NG Used vehicles. Luxury, affordable, verified options. DM for live video inspection."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <div class="topbar__left">
-        <span class="dot"></span>
-        <p><strong>Evertrust Autos</strong> — Foreign Used & NG Used Cars • Owerri</p>
-      </div>
-      <a class="topbar__cta" href="#inventory">View Inventory</a>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="#" aria-label="Evertrust Autos Home">
-        <div class="brand__logoWrap">
-          <!-- Put your logo here -->
-          <img
-            class="brand__logoImg"
-            src="assets/logo/evertrust-autos-logo.jpg"
-            alt="Evertrust Autos logo"
-            loading="lazy"
-            onerror="this.style.display='none'; this.parentElement.classList.add('isFallback');"
-          />
-          <div class="brand__logoFallback" aria-hidden="true">EA</div>
-        </div>
-
-        <div class="brand__text">
-          <span class="brand__name">Evertrust Autos</span>
-          <span class="brand__tag">Luxury • Affordable • Verified Options</span>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#inventory">Inventory</a>
-        <a href="#sold">Sold</a>
-        <a href="#referral">Referral</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="header__actions">
-        <a class="btn btn--ghost" href="#contact">Get Quote</a>
-        <a class="btn btn--primary" id="whatsappTop" href="#">WhatsApp</a>
-        <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div class="mobileMenu" id="mobileMenu" hidden>
-      <div class="container mobileMenu__inner">
-        <a href="#inventory" class="mobileLink">Inventory</a>
-        <a href="#sold" class="mobileLink">Sold</a>
-        <a href="#referral" class="mobileLink">Referral</a>
-        <a href="#services" class="mobileLink">Services</a>
-        <a href="#contact" class="mobileLink">Contact</a>
-        <a class="btn btn--primary mobileBtn" id="whatsappMobile" href="#">Chat on WhatsApp</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <div class="badgeRow">
-            <span class="badge">Owerri, Imo State</span>
-            <span class="badge">Foreign Used • NG Used</span>
-            <span class="badge">DM for Live Video</span>
-          </div>
-
-          <h1>
-            Clean Cars. Trusted Deals. <span class="accent">Professional Service.</span>
-          </h1>
-
-          <p class="lead">
-            Evertrust Autos sells <strong>luxury and affordable cars</strong> with verified details.
-            We provide <strong>live video inspection</strong> on request, and help you pick the best option
-            based on your budget.
+  <body>
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__left">
+          <span class="dot"></span>
+          <p>
+            <strong>Evertrust Autos</strong> — Foreign Used & NG Used Cars •
+            Owerri
           </p>
-
-          <div class="hero__ctas">
-            <a class="btn btn--primary" href="#inventory">Browse Cars</a>
-            <a class="btn btn--ghost" id="heroWhatsApp" href="#">DM on WhatsApp</a>
-          </div>
-
-          <div class="hero__mini">
-            <div class="miniCard">
-              <h3>Available Brands</h3>
-              <p class="muted">Toyota • Lexus • Mercedes</p>
-              <p class="muted small">Hyundai & Honda — <strong>Coming Soon</strong></p>
-            </div>
-            <div class="miniCard">
-              <h3>Shop Address</h3>
-              <p class="muted" id="addressText">Owerri, Imo State</p>
-            </div>
-            <div class="miniCard">
-              <h3>Working Hours</h3>
-              <p class="muted" id="hoursText">Mon–Sat: 8:30am–7:00pm • Sun: Appointment</p>
-            </div>
-          </div>
         </div>
+        <a class="topbar__cta" href="#inventory">View Inventory</a>
+      </div>
+    </div>
 
-        <!-- Featured -->
-        <div class="hero__visual">
-          <div class="featured">
-            <div class="featured__top">
-              <span class="featured__label">Featured</span>
-              <span class="featured__pill">Swipe photos + DM for live video</span>
-            </div>
-
-            <div class="featured__media">
-              <img id="featuredImg" src="assets/cars/placeholder.jpg" alt="Featured car" />
-            </div>
-
-            <div class="featured__meta">
-              <div>
-                <h2 id="featuredTitle">Featured Vehicle</h2>
-                <p id="featuredSub" class="muted">Foreign Used / NG Used</p>
-              </div>
-              <div class="featured__price">
-                <span class="muted">Price</span>
-                <span id="featuredPrice">₦ --</span>
-              </div>
-            </div>
-
-            <div class="featured__actions">
-              <a class="btn btn--primary btn--full" id="featuredWhatsApp" href="#">DM About This Car</a>
-            </div>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="#" aria-label="Evertrust Autos Home">
+          <div class="brand__logoWrap">
+            <!-- Put your logo here -->
+            <img
+              class="brand__logoImg"
+              src="assets/logo/evertrust-autos-logo.jpg"
+              alt="Evertrust Autos logo"
+              loading="lazy"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('isFallback');
+              "
+            />
+            <div class="brand__logoFallback" aria-hidden="true">EA</div>
           </div>
+
+          <div class="brand__text">
+            <span class="brand__name">Evertrust Autos</span>
+            <span class="brand__tag"
+              >Luxury • Affordable • Verified Options</span
+            >
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#inventory">Inventory</a>
+          <a href="#sold">Sold</a>
+          <a href="#referral">Referral</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header__actions">
+          <a class="btn btn--ghost" href="#contact">Get Quote</a>
+          <a class="btn btn--primary" id="whatsappTop" href="#">WhatsApp</a>
+          <button
+            class="menuBtn"
+            id="menuBtn"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
         </div>
       </div>
-    </section>
 
-    <!-- Inventory -->
-    <section class="section" id="inventory">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>Available Cars</h2>
-            <p class="muted">
-              Filter by <strong>Brand</strong>, <strong>Body Type</strong>, and <strong>Condition</strong>.
-              Each product supports <strong>4+ photos</strong> and an optional <strong>Live Video</strong>.
+      <!-- Mobile menu -->
+      <div class="mobileMenu" id="mobileMenu" hidden>
+        <div class="container mobileMenu__inner">
+          <a href="#inventory" class="mobileLink">Inventory</a>
+          <a href="#sold" class="mobileLink">Sold</a>
+          <a href="#referral" class="mobileLink">Referral</a>
+          <a href="#services" class="mobileLink">Services</a>
+          <a href="#contact" class="mobileLink">Contact</a>
+          <a class="btn btn--primary mobileBtn" id="whatsappMobile" href="#"
+            >Chat on WhatsApp</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <div class="badgeRow">
+              <span class="badge">Owerri, Imo State</span>
+              <span class="badge">Foreign Used • NG Used</span>
+              <span class="badge">DM for Live Video</span>
+            </div>
+
+            <h1>
+              Clean Cars. Trusted Deals.
+              <span class="accent">Professional Service.</span>
+            </h1>
+
+            <p class="lead">
+              Evertrust Autos sells
+              <strong>luxury and affordable cars</strong> with verified details.
+              We provide <strong>live video inspection</strong> on request, and
+              help you pick the best option based on your budget.
+            </p>
+
+            <div class="hero__ctas">
+              <a class="btn btn--primary" href="#inventory">Browse Cars</a>
+              <a class="btn btn--ghost" id="heroWhatsApp" href="#"
+                >DM on WhatsApp</a
+              >
+            </div>
+
+            <div class="hero__mini">
+              <div class="miniCard">
+                <h3>Available Brands</h3>
+                <p class="muted">Toyota • Lexus • Mercedes</p>
+                <p class="muted small">
+                  Hyundai & Honda — <strong>Coming Soon</strong>
+                </p>
+              </div>
+              <div class="miniCard">
+                <h3>Shop Address</h3>
+                <p class="muted" id="addressText">Owerri, Imo State</p>
+              </div>
+              <div class="miniCard">
+                <h3>Working Hours</h3>
+                <p class="muted" id="hoursText">
+                  Mon–Sat: 8:30am–7:00pm • Sun: Appointment
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured -->
+          <div class="hero__visual">
+            <div class="featured">
+              <div class="featured__top">
+                <span class="featured__label">Featured</span>
+                <span class="featured__pill"
+                  >Swipe photos + DM for live video</span
+                >
+              </div>
+
+              <div class="featured__media">
+                <img
+                  id="featuredImg"
+                  src="assets/cars/placeholder.jpg"
+                  alt="Featured car"
+                />
+              </div>
+
+              <div class="featured__meta">
+                <div>
+                  <h2 id="featuredTitle">Featured Vehicle</h2>
+                  <p id="featuredSub" class="muted">Foreign Used / NG Used</p>
+                </div>
+                <div class="featured__price">
+                  <span class="muted">Price</span>
+                  <span id="featuredPrice">₦ --</span>
+                </div>
+              </div>
+
+              <div class="featured__actions">
+                <a
+                  class="btn btn--primary btn--full"
+                  id="featuredWhatsApp"
+                  href="#"
+                  >DM About This Car</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inventory -->
+      <section class="section" id="inventory">
+        <div class="container">
+          <div class="sectionHead">
+            <div>
+              <h2>Available Cars</h2>
+              <p class="muted">
+                Filter by <strong>Brand</strong>, <strong>Body Type</strong>,
+                and <strong>Condition</strong>. Each product supports
+                <strong>4+ photos</strong> and an optional
+                <strong>Live Video</strong>.
+              </p>
+            </div>
+            <div class="sectionHead__actions">
+              <button class="btn btn--ghost" id="resetFilters" type="button">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="filters">
+            <div class="filter">
+              <label for="brandFilter">Brand</label>
+              <select id="brandFilter">
+                <option value="all">All Brands</option>
+              </select>
+            </div>
+
+            <div class="filter">
+              <label for="typeFilter">Body Type</label>
+              <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="SUV">SUV</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Compact">Compact</option>
+                <option value="Truck">Truck</option>
+                <option value="Minivan">Minivan</option>
+              </select>
+            </div>
+
+            <div class="filter">
+              <label for="conditionFilter">Condition</label>
+              <select id="conditionFilter">
+                <option value="all">All</option>
+                <option value="Foreign Used">Foreign Used</option>
+                <option value="NG Used">NG Used</option>
+              </select>
+            </div>
+
+            <div class="filter search">
+              <label for="searchInput">Search</label>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="e.g. RX350 2018, Camry 2010..."
+              />
+            </div>
+          </div>
+
+          <div class="notice">
+            <div class="notice__icon">ℹ️</div>
+            <div class="notice__text">
+              <strong>Coming Soon:</strong> Hyundai & Honda will be stocked
+              soon. For special requests, DM us on WhatsApp.
+            </div>
+            <a class="btn btn--primary btn--small" id="noticeWhatsApp" href="#"
+              >DM Now</a
+            >
+          </div>
+
+          <div
+            id="brandSections"
+            class="brandSections"
+            aria-live="polite"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Sold Cars -->
+      <section class="section soldSection" id="sold">
+        <div class="container">
+          <div class="sectionHead">
+            <div>
+              <h2>Recently Sold Cars</h2>
+              <p class="muted">
+                Sold cars show <strong>2 photos only</strong>. Prices are not
+                displayed — DM to ask about price or request similar cars.
+              </p>
+            </div>
+            <div class="sectionHead__actions">
+              <a class="btn btn--primary" id="soldWhatsApp" href="#"
+                >Request Similar Cars</a
+              >
+            </div>
+          </div>
+
+          <div id="soldSections" class="brandSections" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Referral -->
+      <section class="section referral" id="referral">
+        <div class="container referral__inner">
+          <div class="referral__content">
+            <div class="refBadge">Referral Program</div>
+            <h2>Earn by Referring a Successful Buyer</h2>
+
+            <p class="muted referral__lead">
+              Refer a buyer that completes purchase and earn
+              <strong class="refMoney">₦100,000 – ₦500,000</strong>
+              <span class="muted">(depending on the car purchased)</span>.
+            </p>
+
+            <ul class="refList">
+              <li>Share buyer details + the car they want</li>
+              <li>We confirm and close the deal</li>
+              <li>You get paid after successful sale</li>
+            </ul>
+
+            <div class="refCtas">
+              <a class="btn btn--primary" id="referralWhatsApp" href="#"
+                >Start Referring on WhatsApp</a
+              >
+              <a class="btn btn--ghost" href="#inventory">View Cars Again</a>
+            </div>
+
+            <p class="muted small">
+              Tip: referrals work best when you send buyer budget + preferred
+              brand + condition (Foreign Used / NG Used).
             </p>
           </div>
-          <div class="sectionHead__actions">
-            <button class="btn btn--ghost" id="resetFilters" type="button">Reset</button>
-          </div>
-        </div>
 
-        <div class="filters">
-          <div class="filter">
-            <label for="brandFilter">Brand</label>
-            <select id="brandFilter">
-              <option value="all">All Brands</option>
-            </select>
-          </div>
-
-          <div class="filter">
-            <label for="typeFilter">Body Type</label>
-            <select id="typeFilter">
-              <option value="all">All Types</option>
-              <option value="SUV">SUV</option>
-              <option value="Sedan">Sedan</option>
-              <option value="Jeep">Jeep</option>
-              <option value="Compact">Compact</option>
-              <option value="Truck">Truck</option>
-            </select>
-          </div>
-
-          <div class="filter">
-            <label for="conditionFilter">Condition</label>
-            <select id="conditionFilter">
-              <option value="all">All</option>
-              <option value="Foreign Used">Foreign Used</option>
-              <option value="NG Used">NG Used</option>
-            </select>
-          </div>
-
-          <div class="filter search">
-            <label for="searchInput">Search</label>
-            <input id="searchInput" type="search" placeholder="e.g. RX350 2018, Camry 2010..." />
-          </div>
-        </div>
-
-        <div class="notice">
-          <div class="notice__icon">ℹ️</div>
-          <div class="notice__text">
-            <strong>Coming Soon:</strong> Hyundai & Honda will be stocked soon. For special requests, DM us on WhatsApp.
-          </div>
-          <a class="btn btn--primary btn--small" id="noticeWhatsApp" href="#">DM Now</a>
-        </div>
-
-        <div id="brandSections" class="brandSections" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- Sold Cars -->
-    <section class="section soldSection" id="sold">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>Recently Sold Cars</h2>
-            <p class="muted">
-              These vehicles are sold out. If you want something similar, DM us and we’ll recommend available options.
+          <div class="referral__card">
+            <h3>Quick Referral Form</h3>
+            <p class="muted small">
+              This sends the referral as a WhatsApp message.
             </p>
-          </div>
-          <div class="sectionHead__actions">
-            <a class="btn btn--primary" id="soldWhatsApp" href="#">Request Similar Cars</a>
-          </div>
-        </div>
 
-        <div id="soldSections" class="brandSections" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- Referral -->
-    <section class="section referral" id="referral">
-      <div class="container referral__inner">
-        <div class="referral__content">
-          <div class="refBadge">Referral Program</div>
-          <h2>Earn by Referring a Successful Buyer</h2>
-
-          <p class="muted referral__lead">
-            Refer a buyer that completes purchase and earn
-            <strong class="refMoney">₦100,000 – ₦500,000</strong>
-            <span class="muted">(depending on the car purchased)</span>.
-          </p>
-
-          <ul class="refList">
-            <li>Share buyer details + the car they want</li>
-            <li>We confirm and close the deal</li>
-            <li>You get paid after successful sale</li>
-          </ul>
-
-          <div class="refCtas">
-            <a class="btn btn--primary" id="referralWhatsApp" href="#">Start Referring on WhatsApp</a>
-            <a class="btn btn--ghost" href="#inventory">View Cars Again</a>
-          </div>
-
-          <p class="muted small">
-            Tip: referrals work best when you send buyer budget + preferred brand + condition (Foreign Used / NG Used).
-          </p>
-        </div>
-
-        <div class="referral__card">
-          <h3>Quick Referral Form</h3>
-          <p class="muted small">This sends the referral as a WhatsApp message (no backend needed).</p>
-
-          <form id="referralForm">
-            <label>
-              Your Name
-              <input name="refName" required placeholder="e.g. Emmanuel" />
-            </label>
-
-            <label>
-              Buyer Name (optional)
-              <input name="buyerName" placeholder="e.g. Chinedu" />
-            </label>
-
-            <label>
-              Buyer Phone (optional)
-              <input name="buyerPhone" placeholder="e.g. 080..." />
-            </label>
-
-            <label>
-              What car are they looking for?
-              <textarea name="refMessage" rows="4" placeholder="e.g. Lexus RX350 2018 Foreign Used, budget ₦45M–₦50M"></textarea>
-            </label>
-
-            <button class="btn btn--primary btn--full" type="submit">Send Referral on WhatsApp</button>
-          </form>
-
-          <div class="refNote">
-            <strong>Note:</strong> Referral payout is based on completed sales only.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>Other Services</h2>
-            <p class="muted">We also support buyers and car owners with trusted services.</p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <h3>Purchase of Authentic Neatly Driven Cars (Nigeria)</h3>
-            <p>We buy authentic, nearly driven cars in Nigeria — properly assessed and verified.</p>
-          </article>
-
-          <article class="card">
-            <h3>Maintenance Workshop (Trusted Engineers)</h3>
-            <p>Reliable workshop support for diagnosis, servicing, and minor repairs.</p>
-          </article>
-
-          <article class="card">
-            <h3>Sales of Direct Foreign Car Engines</h3>
-            <p>We supply quality direct foreign engines with professional guidance.</p>
-          </article>
-
-          <article class="card">
-            <h3>Upgrade / Refurbish to Newer Models</h3>
-            <p>Upgrade your car appearance and features — clean refurbish options available.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section contact" id="contact">
-      <div class="container contact__inner">
-        <div class="contact__content">
-          <h2>Contact & Location</h2>
-          <p class="muted">
-            Visit us or DM on WhatsApp to confirm availability, inspection and live video.
-          </p>
-
-          <div class="contactCards">
-            <div class="contactCard">
-              <h3>Shop Address</h3>
-              <p class="muted" id="addressCardText"></p>
-            </div>
-            <div class="contactCard">
-              <h3>Working Hours</h3>
-              <p class="muted" id="hoursCardText"></p>
-            </div>
-          </div>
-
-          <div class="contact__ctas">
-            <a class="btn btn--primary" id="contactWhatsApp" href="#">WhatsApp Evertrust Autos</a>
-            <a class="btn btn--ghost" href="#inventory">Back to Inventory</a>
-          </div>
-
-          <p class="muted small">
-            Tip: Send <strong>budget + brand + model + condition</strong> for faster response.
-          </p>
-        </div>
-
-        <div class="contact__form">
-          <div class="formCard">
-            <h3>Quick Enquiry</h3>
-            <p class="muted">This form opens WhatsApp with your message (no backend needed).</p>
-
-            <form id="leadForm">
+            <form id="referralForm">
               <label>
-                Full Name
-                <input name="name" required placeholder="Your name" />
-              </label>
-              <label>
-                Phone Number
-                <input name="phone" required placeholder="e.g. 080..." />
-              </label>
-              <label>
-                Message
-                <textarea name="message" rows="4" placeholder="What car do you want? Budget? Foreign Used or NG Used?"></textarea>
+                Your Name
+                <input name="refName" required placeholder="e.g. Emmanuel" />
               </label>
 
-              <button class="btn btn--primary btn--full" type="submit">Send on WhatsApp</button>
-              <p class="muted small">We reply ASAP.</p>
+              <label>
+                Buyer Name (optional)
+                <input name="buyerName" placeholder="e.g. Nduka" />
+              </label>
+
+              <label>
+                Buyer Phone (optional)
+                <input name="buyerPhone" placeholder="e.g. 080..." />
+              </label>
+
+              <label>
+                What car are they looking for?
+                <textarea
+                  name="refMessage"
+                  rows="4"
+                  placeholder="e.g. Lexus RX350 2018 Foreign Used, budget ₦45M–₦50M"
+                ></textarea>
+              </label>
+
+              <button class="btn btn--primary btn--full" type="submit">
+                Send Referral on WhatsApp
+              </button>
             </form>
+
+            <div class="refNote">
+              <strong>Note:</strong> Referral payout is based on completed sales
+              only.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div>
-          <strong>Evertrust Autos</strong>
-          <p class="muted small">Toyota • Lexus • Mercedes • Owerri, Imo State</p>
+      <!-- Services -->
+      <section class="section" id="services">
+        <div class="container">
+          <div class="sectionHead">
+            <div>
+              <h2>Other Services</h2>
+              <p class="muted">
+                We also support buyers and car owners with trusted services.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <article class="card">
+              <h3>Purchase of Authentic Neatly Driven Cars (Nigeria)</h3>
+              <p>
+                We buy authentic, nearly driven cars in Nigeria — properly
+                assessed and verified.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Maintenance Workshop (Trusted Engineers)</h3>
+              <p>
+                Reliable workshop support for diagnosis, servicing, and minor
+                repairs.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Sales of Direct Foreign Car Engines</h3>
+              <p>
+                We supply quality direct foreign engines with professional
+                guidance.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Upgrade / Refurbish to Newer Models</h3>
+              <p>
+                Upgrade your car appearance and features — clean refurbish
+                options available.
+              </p>
+            </article>
+          </div>
         </div>
+      </section>
 
-        <div class="footer__right">
-          <p class="muted small">© <span id="year"></span> All rights reserved.</p>
-          <p class="muted small footerCredit">
-            Site by <a class="creditLink" href="https://wa.me/2348146592722" target="_blank" rel="noopener">Website by Emmanuel Adubasim</a>
-          </p>
+      <!-- Contact -->
+      <section class="section contact" id="contact">
+        <div class="container contact__inner">
+          <div class="contact__content">
+            <h2>Contact & Location</h2>
+            <p class="muted">
+              Visit us or DM on WhatsApp to confirm availability, inspection and
+              live video.
+            </p>
+
+            <div class="contactCards">
+              <div class="contactCard">
+                <h3>Shop Address</h3>
+                <p class="muted" id="addressCardText"></p>
+              </div>
+              <div class="contactCard">
+                <h3>Working Hours</h3>
+                <p class="muted" id="hoursCardText"></p>
+              </div>
+            </div>
+
+            <div class="contact__ctas">
+              <a class="btn btn--primary" id="contactWhatsApp" href="#"
+                >WhatsApp Evertrust Autos</a
+              >
+              <a class="btn btn--ghost" href="#inventory">Back to Inventory</a>
+            </div>
+
+            <p class="muted small">
+              Tip: Send <strong>budget + brand + model + condition</strong> for
+              faster response.
+            </p>
+          </div>
+
+          <div class="contact__form">
+            <div class="formCard">
+              <h3>Quick Enquiry</h3>
+              <p class="muted">
+                This form opens WhatsApp with your message (no backend needed).
+              </p>
+
+              <form id="leadForm">
+                <label>
+                  Full Name
+                  <input name="name" required placeholder="Your name" />
+                </label>
+                <label>
+                  Phone Number
+                  <input name="phone" required placeholder="e.g. 080..." />
+                </label>
+                <label>
+                  Message
+                  <textarea
+                    name="message"
+                    rows="4"
+                    placeholder="What car do you want? Budget? Foreign Used or NG Used?"
+                  ></textarea>
+                </label>
+
+                <button class="btn btn--primary btn--full" type="submit">
+                  Send on WhatsApp
+                </button>
+                <p class="muted small">We reply ASAP.</p>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
-  </main>
+      </section>
 
-  <!-- Floating WhatsApp -->
-  <a class="floatWA" id="floatWA" href="#" aria-label="Chat on WhatsApp">WhatsApp</a>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div>
+            <strong>Evertrust Autos</strong>
+            <p class="muted small">
+              Toyota • Lexus • Mercedes • Owerri, Imo State
+            </p>
+          </div>
 
-  <script src="script.js"></script>
-</body>
+          <div class="footer__right">
+            <p class="muted small">
+              © <span id="year"></span> All rights reserved.
+            </p>
+            <p class="muted small footerCredit">
+              <a
+                class="creditLink"
+                href="https://wa.me/2348146592722"
+                target="_blank"
+                rel="noopener"
+                >Site by EmmanuelAdubasim</a
+              >
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a class="floatWA" id="floatWA" href="#" aria-label="Chat on WhatsApp"
+      >WhatsApp</a
+    >
+
+    <script src="script.js"></script>
+  </body>
 </html>
