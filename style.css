@@ -436,6 +436,7 @@ select, input, textarea{
   gap: 8px;
   padding: 10px;
   overflow-x: auto;
+  align-items: center;
 }
 .thumb{
   width: 56px;
@@ -551,8 +552,6 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   justify-content: space-between;
   gap: 14px;
 }
-
-/* ===== Footer credit ===== */
 .footer__right{
   display:flex;
   flex-direction: column;
@@ -649,6 +648,34 @@ form label{ font-size: 12px; color: var(--muted); display:flex; flex-direction: 
   background: rgba(11,94,215,.06);
   color: var(--muted);
   font-size: 13px;
+}
+
+/* ===== Sold section styling ===== */
+.soldSection{
+  background: rgba(11,94,215,.03);
+  border-top: 1px solid rgba(11,26,42,.10);
+}
+.pill--available{
+  color: var(--primary);
+}
+.pill--sold{
+  color: #7a1b1b;
+  background: rgba(255, 235, 235, .95);
+  border: 1px solid rgba(122, 27, 27, .20);
+}
+.carCard.isSold{
+  opacity: 0.92;
+}
+.carCard.isSold .price{
+  color: rgba(11,26,42,.55);
+}
+.soldHint{
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius2);
+  border: 1px dashed rgba(11,26,42,.16);
+  background: rgba(255,255,255,.75);
+  color: var(--muted);
 }
 
 @media (max-width: 980px){

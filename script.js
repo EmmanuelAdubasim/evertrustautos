@@ -20,17 +20,34 @@ function toWhatsAppInternational(local) {
 
 const WHATSAPP_INT = toWhatsAppInternational(DEALER.whatsappNumberLocal);
 
-// Quick template creator (keeps car entries consistent)
+// ============================
+// ✅ HOW TO MARK A CAR AS SOLD
+// ============================
+// When a car is sold, locate that car below in the CARS list
+// and change:
+//    status: "available"
+// to:
+//    status: "sold"
+//
+// After changing, save file, then push to GitHub.
+// The car will automatically move from "Available Cars" to "Recently Sold Cars" section.
+// ============================
+
+// ============================
+// Data Model
+// ============================
 function carItem({
   id,
   brand,
   bodyType,
   model,
   year,
-  condition,      // "Foreign Used" | "NG Used"
-  priceText,      // e.g. "₦47,000,000"
-  images,         // minimum 4 images
-  videoUrl = ""   // optional
+  condition,            // "Foreign Used" | "NG Used"
+  status = "available", // "available" | "sold"
+  priceText,
+  images = [],          // you can leave empty for now
+  videoUrl = "",        // optional (if empty: button shows DM for live video)
+  features = []         // optional
 }) {
   return {
     id,
@@ -39,17 +56,21 @@ function carItem({
     model,
     year,
     condition,
+    status,
     title: `${brand} ${model} (${year})`,
     priceText,
     images,
-    videoUrl
+    videoUrl,
+    features
   };
 }
 
 // ============================
-// Inventory (YOUR CURRENT PRODUCTS)
+// Inventory (OLD + NEW cars)
+// NOTE: Old cars keep the SAME filenames you already saved.
 // ============================
 const CARS = [
+  // ===== OLD CARS (STILL AVAILABLE) =====
   carItem({
     id: "lx-rx350-2018",
     brand: "Lexus",
@@ -57,6 +78,7 @@ const CARS = [
     model: "RX350",
     year: 2018,
     condition: "Foreign Used",
+    status: "available",
     priceText: "₦47,000,000",
     images: [
       "assets/cars/lexus-rx350-2018-1.jpg",
@@ -74,6 +96,7 @@ const CARS = [
     model: "Camry Spider",
     year: 2010,
     condition: "NG Used",
+    status: "available",
     priceText: "₦9,000,000",
     images: [
       "assets/cars/camry-spider-2010-1.jpg",
@@ -90,6 +113,7 @@ const CARS = [
     model: "RX350 (2012 → 2015 Facelift)",
     year: 2012,
     condition: "NG Used",
+    status: "available",
     priceText: "₦18,900,000",
     images: [
       "assets/cars/rx350-2012-facelift-1.jpg",
@@ -106,6 +130,7 @@ const CARS = [
     model: "ES350",
     year: 2010,
     condition: "NG Used",
+    status: "available",
     priceText: "₦10,000,000",
     images: [
       "assets/cars/es350-2010-1.jpg",
@@ -122,6 +147,7 @@ const CARS = [
     model: "RX330",
     year: 2006,
     condition: "NG Used",
+    status: "available",
     priceText: "₦9,700,000",
     images: [
       "assets/cars/rx330-2006-a-1.jpg",
@@ -138,6 +164,7 @@ const CARS = [
     model: "RX330",
     year: 2007,
     condition: "NG Used",
+    status: "available",
     priceText: "₦10,500,000",
     images: [
       "assets/cars/rx330-2007-1.jpg",
@@ -154,6 +181,7 @@ const CARS = [
     model: "RX330",
     year: 2006,
     condition: "NG Used",
+    status: "available",
     priceText: "₦10,000,000",
     images: [
       "assets/cars/rx330-2006-b-1.jpg",
@@ -161,6 +189,74 @@ const CARS = [
       "assets/cars/rx330-2006-b-3.jpg",
       "assets/cars/rx330-2006-b-4.jpg"
     ]
+  }),
+
+  // ===== NEW CARS (images can be added later) =====
+  carItem({
+    id: "ty-avalon-xle-2014",
+    brand: "Toyota",
+    bodyType: "Sedan",
+    model: "Avalon XLE",
+    year: 2014,
+    condition: "NG Used",
+    status: "available",
+    priceText: "₦18,500,000",
+    images: [
+      "assets/cars/toyota-avalon-xle-2014-1.jpg",
+      "assets/cars/toyota-avalon-xle-2014-2.jpg",
+      "assets/cars/toyota-avalon-xle-2014-3.jpg",
+      "assets/cars/toyota-avalon-xle-2014-4.jpg"
+    ],
+    features: ["V6 Engine", "Reverse Camera", "TV Screen", "Push Start", "Parking Sensor", "First Body", "Nothing Fixed"]
+  }),
+
+  carItem({
+    id: "ty-camry-2005-v6",
+    brand: "Toyota",
+    bodyType: "Sedan",
+    model: "Camry",
+    year: 2005,
+    condition: "NG Used",
+    status: "available",
+    priceText: "₦4,500,000",
+    images: [
+      "assets/cars/toyota-camry-2005-1.jpg",
+      "assets/cars/toyota-camry-2005-2.jpg",
+      "assets/cars/toyota-camry-2005-3.jpg",
+      "assets/cars/toyota-camry-2005-4.jpg"
+    ],
+    features: ["V6 Engine", "First Body", "Nothing Fixed"]
+  }),
+
+  carItem({
+    id: "ty-tundra-2014-2015-v8",
+    brand: "Toyota",
+    bodyType: "Truck",
+    model: "Tundra",
+    year: 2014,
+    condition: "NG Used",
+    status: "available",
+    priceText: "₦19,800,000",
+    images: [
+      "assets/cars/toyota-tundra-2014-1.jpg",
+      "assets/cars/toyota-tundra-2014-2.jpg",
+      "assets/cars/toyota-tundra-2014-3.jpg",
+      "assets/cars/toyota-tundra-2014-4.jpg"
+    ],
+    features: ["V8 Engine", "Parking Assist", "First Body", "Nothing Fixed"]
+  }),
+
+  carItem({
+    id: "lx-es350-2014-foreign",
+    brand: "Lexus",
+    bodyType: "Sedan",
+    model: "ES350",
+    year: 2014,
+    condition: "Foreign Used",
+    status: "available",
+    priceText: "₦24,800,000",
+    images: [],
+    features: ["V6 Engine", "Reverse Camera", "TV Screen", "Apple CarPlay", "Parking Assist", "First Body", "Nothing Fixed"]
   })
 ];
 
@@ -171,8 +267,7 @@ const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
 function waLink(message) {
-  const text = encodeURIComponent(message);
-  return `https://wa.me/${WHATSAPP_INT}?text=${text}`;
+  return `https://wa.me/${WHATSAPP_INT}?text=${encodeURIComponent(message)}`;
 }
 
 function uniqueBrands(cars) {
@@ -194,10 +289,10 @@ function matchesFilters(car, filters) {
   const conditionOk = filters.condition === "all" || car.condition === filters.condition;
 
   const q = filters.q.trim().toLowerCase();
-  const qOk = !q || [car.title, car.brand, car.model, car.bodyType, car.condition, String(car.year)]
-    .join(" ")
-    .toLowerCase()
-    .includes(q);
+  const qOk = !q || [
+    car.title, car.brand, car.model, car.bodyType, car.condition, String(car.year),
+    (car.features || []).join(" ")
+  ].join(" ").toLowerCase().includes(q);
 
   return brandOk && typeOk && conditionOk && qOk;
 }
@@ -215,6 +310,9 @@ function createCarCard(car) {
   const card = document.createElement("article");
   card.className = "carCard";
 
+  const isSold = car.status === "sold";
+  if (isSold) card.classList.add("isSold");
+
   const mainImg = getFirstImage(car);
   const thumbs = (car.images || []).slice(0, 8);
 
@@ -222,10 +320,29 @@ function createCarCard(car) {
   const dmMsg = `Hi ${DEALER.name}, please send a LIVE VIDEO for: ${car.title} (${car.condition}). Price: ${car.priceText}.`;
   const videoHref = hasVideo ? car.videoUrl : waLink(dmMsg);
 
+  const availabilityText = isSold ? "SOLD OUT" : "AVAILABLE";
+  const pillClass = isSold ? "pill pill--sold" : "pill pill--available";
+
+  const primaryMsg = isSold
+    ? `Hi ${DEALER.name}, I saw this SOLD car on your website: ${car.title}. Please show similar AVAILABLE options. Budget: ...`
+    : `Hi ${DEALER.name}, I'm interested in: ${car.title} (${car.condition}). Price: ${car.priceText}. Please confirm availability and send more photos / details.`;
+
+  const thumbsHTML = thumbs.length
+    ? thumbs.map((src, i) => `
+        <div class="thumb ${i === 0 ? "isActive" : ""}" data-src="${src}">
+          <img src="${src}" alt="${car.title} photo ${i + 1}" loading="lazy" onerror="this.src='assets/cars/placeholder.jpg'">
+        </div>
+      `).join("")
+    : `<span class="muted small">Upload 4+ photos to enable gallery</span>`;
+
+  const featuresHTML = (car.features && car.features.length)
+    ? `<div class="metaRow">${car.features.slice(0, 4).map(f => `<span>• ${f}</span>`).join(" ")}</div>`
+    : "";
+
   card.innerHTML = `
     <div class="gallery">
       <div class="gallery__main">
-        <span class="pill">${car.condition}</span>
+        <span class="${pillClass}">${availabilityText} • ${car.condition}</span>
         <img class="js-mainImg"
              src="${mainImg}"
              alt="${car.title}"
@@ -234,11 +351,7 @@ function createCarCard(car) {
       </div>
 
       <div class="gallery__thumbs js-thumbs" aria-label="More photos">
-        ${thumbs.map((src, i) => `
-          <div class="thumb ${i === 0 ? "isActive" : ""}" data-src="${src}">
-            <img src="${src}" alt="${car.title} photo ${i + 1}" loading="lazy" onerror="this.src='assets/cars/placeholder.jpg'">
-          </div>
-        `).join("")}
+        ${thumbsHTML}
       </div>
     </div>
 
@@ -258,26 +371,24 @@ function createCarCard(car) {
         <span class="muted" style="font-size:12px;">${car.model}</span>
       </div>
 
+      ${featuresHTML}
+
       <div class="cardBtns">
         <a class="btn btn--ghost js-video" href="${videoHref}" target="${hasVideo ? "_blank" : "_self"}">
           ${hasVideo ? "Watch Live Video" : "DM for Live Video"}
         </a>
-        <a class="btn btn--primary js-wa" href="#">
-          DM / Buy
+        <a class="btn btn--primary js-wa" href="${waLink(primaryMsg)}">
+          ${isSold ? "Request Similar" : "DM / Buy"}
         </a>
       </div>
     </div>
   `;
 
-  const waBtn = card.querySelector(".js-wa");
-  const enquiry = `Hi ${DEALER.name}, I'm interested in: ${car.title} (${car.condition}). Price: ${car.priceText}. Please confirm availability and send more photos / details.`;
-  waBtn.href = waLink(enquiry);
-
-  // Thumbnail click changes main image
+  // Thumbnail switching
   const main = card.querySelector(".js-mainImg");
   const thumbsWrap = card.querySelector(".js-thumbs");
 
-  if (thumbsWrap) {
+  if (thumbsWrap && thumbs.length) {
     thumbsWrap.addEventListener("click", (e) => {
       const thumb = e.target.closest(".thumb");
       if (!thumb) return;
@@ -295,17 +406,21 @@ function createCarCard(car) {
 }
 
 // ============================
-// Brand block + slider
+// Brand block + slider + auto-slide
 // ============================
-function createBrandBlock(brand, cars) {
+function createBrandBlock(brand, cars, { mode = "available" } = {}) {
   const block = document.createElement("section");
   block.className = "brandBlock";
+
+  const subtitle = mode === "sold"
+    ? `${cars.length} sold car(s) • Browse past sales`
+    : `${cars.length} option(s) • Scroll or use arrows • Auto-scroll enabled`;
 
   block.innerHTML = `
     <div class="brandBlock__head">
       <div>
         <h3>${brand}</h3>
-        <p>${cars.length} option(s) • Scroll or use arrows • Auto-scroll enabled</p>
+        <p>${subtitle}</p>
       </div>
       <div class="brandControls">
         <button class="iconBtn js-prev" type="button" aria-label="Scroll left">‹</button>
@@ -313,7 +428,7 @@ function createBrandBlock(brand, cars) {
       </div>
     </div>
     <div class="slider">
-      <div class="track" tabindex="0" aria-label="${brand} inventory slider"></div>
+      <div class="track" tabindex="0" aria-label="${brand} ${mode} slider"></div>
     </div>
   `;
 
@@ -332,43 +447,45 @@ function createBrandBlock(brand, cars) {
   prevBtn.addEventListener("click", () => track.scrollBy({ left: -scrollByAmount(), behavior: "smooth" }));
   nextBtn.addEventListener("click", () => track.scrollBy({ left: scrollByAmount(), behavior: "smooth" }));
 
-  // Auto-scroll (pause on hover/touch)
-  let autoTimer = null;
+  // ✅ Auto-slide ONLY for available blocks
+  if (mode !== "sold") {
+    let autoTimer = null;
 
-  const startAuto = () => {
-    if (autoTimer) return;
-    autoTimer = setInterval(() => {
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const atEnd = track.scrollLeft >= maxScroll - 4;
-      if (atEnd) track.scrollTo({ left: 0, behavior: "smooth" });
-      else track.scrollBy({ left: scrollByAmount(), behavior: "smooth" });
-    }, 2800);
-  };
+    const startAuto = () => {
+      if (autoTimer) return;
+      autoTimer = setInterval(() => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const atEnd = track.scrollLeft >= maxScroll - 4;
+        if (atEnd) track.scrollTo({ left: 0, behavior: "smooth" });
+        else track.scrollBy({ left: scrollByAmount(), behavior: "smooth" });
+      }, 2800);
+    };
 
-  const stopAuto = () => {
-    if (autoTimer) clearInterval(autoTimer);
-    autoTimer = null;
-  };
+    const stopAuto = () => {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    };
 
-  track.addEventListener("mouseenter", stopAuto);
-  track.addEventListener("mouseleave", startAuto);
-  track.addEventListener("touchstart", stopAuto, { passive: true });
-  track.addEventListener("touchend", startAuto);
+    track.addEventListener("mouseenter", stopAuto);
+    track.addEventListener("mouseleave", startAuto);
+    track.addEventListener("touchstart", stopAuto, { passive: true });
+    track.addEventListener("touchend", startAuto);
 
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) startAuto();
-      else stopAuto();
-    }
-  }, { threshold: 0.25 });
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) startAuto();
+        else stopAuto();
+      }
+    }, { threshold: 0.25 });
 
-  io.observe(block);
+    io.observe(block);
+  }
 
   return block;
 }
 
 // ============================
-// Render
+// Render Available
 // ============================
 function renderInventory() {
   const filters = {
@@ -378,7 +495,8 @@ function renderInventory() {
     q: $("#searchInput").value
   };
 
-  const filtered = CARS.filter(c => matchesFilters(c, filters));
+  const availableCars = CARS.filter(c => c.status !== "sold");
+  const filtered = availableCars.filter(c => matchesFilters(c, filters));
   const grouped = groupByBrand(filtered);
 
   const host = $("#brandSections");
@@ -396,10 +514,43 @@ function renderInventory() {
   }
 
   for (const [brand, cars] of grouped.entries()) {
-    host.appendChild(createBrandBlock(brand, cars));
+    host.appendChild(createBrandBlock(brand, cars, { mode: "available" }));
   }
 }
 
+// ============================
+// Render Sold
+// ============================
+function renderSold() {
+  const soldCars = CARS.filter(c => c.status === "sold");
+  const host = $("#soldSections");
+  host.innerHTML = "";
+
+  // If no sold cars yet, show requested message
+  if (soldCars.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "card";
+    empty.innerHTML = `
+      <h3>Sold cars will soon be displayed</h3>
+      <p class="muted">Once a car gets sold, we will move it here so visitors can request similar available options.</p>
+      <div class="soldHint">
+        <strong>How to mark sold:</strong>
+        Change <code>status: "available"</code> to <code>status: "sold"</code> inside <strong>script.js</strong> then push to GitHub.
+      </div>
+    `;
+    host.appendChild(empty);
+    return;
+  }
+
+  const grouped = groupByBrand(soldCars);
+  for (const [brand, cars] of grouped.entries()) {
+    host.appendChild(createBrandBlock(brand, cars, { mode: "sold" }));
+  }
+}
+
+// ============================
+// Filters
+// ============================
 function fillBrandDropdown() {
   const brands = uniqueBrands(CARS);
   const sel = $("#brandFilter");
@@ -411,6 +562,32 @@ function fillBrandDropdown() {
   });
 }
 
+function setupFilters() {
+  const rerender = () => renderInventory();
+
+  $("#brandFilter").addEventListener("change", rerender);
+  $("#typeFilter").addEventListener("change", rerender);
+  $("#conditionFilter").addEventListener("change", rerender);
+
+  const input = $("#searchInput");
+  let t = null;
+  input.addEventListener("input", () => {
+    if (t) clearTimeout(t);
+    t = setTimeout(rerender, 180);
+  });
+
+  $("#resetFilters").addEventListener("click", () => {
+    $("#brandFilter").value = "all";
+    $("#typeFilter").value = "all";
+    $("#conditionFilter").value = "all";
+    $("#searchInput").value = "";
+    renderInventory();
+  });
+}
+
+// ============================
+// WhatsApp Buttons + Static Text
+// ============================
 function setupWhatsAppButtons() {
   const baseMsg = `Hi ${DEALER.name}, I’m interested in your available cars. Please share current stock and prices.`;
   const href = waLink(baseMsg);
@@ -429,20 +606,25 @@ function setupWhatsAppButtons() {
     `Hi ${DEALER.name}, I want to refer a buyer. Please share the referral steps and payout confirmation.`
   );
 
+  $("#soldWhatsApp").href = waLink(
+    `Hi ${DEALER.name}, I want to request similar cars to what you sell. Please show me available options and prices.`
+  );
+
   $("#featuredWhatsApp").href = href;
 }
 
 function setupFeatured() {
-  const car = CARS[0];
+  const available = CARS.filter(c => c.status !== "sold");
+  const car = available[0] || CARS[0];
   if (!car) return;
 
   $("#featuredImg").src = getFirstImage(car);
   $("#featuredTitle").textContent = car.title;
-  $("#featuredSub").textContent = `${car.brand} • ${car.bodyType} • ${car.condition}`;
+  $("#featuredSub").textContent = `${car.brand} • ${car.bodyType} • ${car.condition} • ${car.status === "sold" ? "SOLD OUT" : "AVAILABLE"}`;
   $("#featuredPrice").textContent = car.priceText;
 
   $("#featuredWhatsApp").href = waLink(
-    `Hi ${DEALER.name}, I'm interested in the featured car: ${car.title} (${car.condition}). Price: ${car.priceText}. Please confirm availability and send details.`
+    `Hi ${DEALER.name}, I'm interested in: ${car.title} (${car.condition}). Price: ${car.priceText}. Please confirm availability and send details.`
   );
 }
 
@@ -514,35 +696,10 @@ function setupReferralForm() {
   });
 }
 
-function setupFilters() {
-  const rerender = () => renderInventory();
-
-  $("#brandFilter").addEventListener("change", rerender);
-  $("#typeFilter").addEventListener("change", rerender);
-  $("#conditionFilter").addEventListener("change", rerender);
-
-  const input = $("#searchInput");
-  let t = null;
-  input.addEventListener("input", () => {
-    if (t) clearTimeout(t);
-    t = setTimeout(rerender, 180);
-  });
-
-  $("#resetFilters").addEventListener("click", () => {
-    $("#brandFilter").value = "all";
-    $("#typeFilter").value = "all";
-    $("#conditionFilter").value = "all";
-    $("#searchInput").value = "";
-    renderInventory();
-  });
-}
-
 function initStaticText() {
   $("#year").textContent = new Date().getFullYear();
-
   $("#addressText").textContent = DEALER.address;
   $("#addressCardText").textContent = DEALER.address;
-
   $("#hoursText").textContent = DEALER.hours;
   $("#hoursCardText").textContent = DEALER.hours;
 }
@@ -559,3 +716,4 @@ setupReferralForm();
 setupFilters();
 initStaticText();
 renderInventory();
+renderSold();

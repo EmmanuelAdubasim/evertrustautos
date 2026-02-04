@@ -24,8 +24,8 @@
   <header class="header">
     <div class="container header__inner">
       <a class="brand" href="#" aria-label="Evertrust Autos Home">
-        <!-- ✅ LOGO LOCATION -->
         <div class="brand__logoWrap">
+          <!-- Put your logo here -->
           <img
             class="brand__logoImg"
             src="assets/logo/evertrust-autos-logo.jpg"
@@ -44,6 +44,7 @@
 
       <nav class="nav" aria-label="Primary navigation">
         <a href="#inventory">Inventory</a>
+        <a href="#sold">Sold</a>
         <a href="#referral">Referral</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
@@ -60,6 +61,7 @@
     <div class="mobileMenu" id="mobileMenu" hidden>
       <div class="container mobileMenu__inner">
         <a href="#inventory" class="mobileLink">Inventory</a>
+        <a href="#sold" class="mobileLink">Sold</a>
         <a href="#referral" class="mobileLink">Referral</a>
         <a href="#services" class="mobileLink">Services</a>
         <a href="#contact" class="mobileLink">Contact</a>
@@ -205,6 +207,25 @@
       </div>
     </section>
 
+    <!-- Sold Cars -->
+    <section class="section soldSection" id="sold">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Recently Sold Cars</h2>
+            <p class="muted">
+              These vehicles are sold out. If you want something similar, DM us and we’ll recommend available options.
+            </p>
+          </div>
+          <div class="sectionHead__actions">
+            <a class="btn btn--primary" id="soldWhatsApp" href="#">Request Similar Cars</a>
+          </div>
+        </div>
+
+        <div id="soldSections" class="brandSections" aria-live="polite"></div>
+      </div>
+    </section>
+
     <!-- Referral -->
     <section class="section referral" id="referral">
       <div class="container referral__inner">
@@ -236,7 +257,7 @@
 
         <div class="referral__card">
           <h3>Quick Referral Form</h3>
-          <p class="muted small">This sends the referral as a WhatsApp message.</p>
+          <p class="muted small">This sends the referral as a WhatsApp message (no backend needed).</p>
 
           <form id="referralForm">
             <label>
@@ -336,7 +357,7 @@
         <div class="contact__form">
           <div class="formCard">
             <h3>Quick Enquiry</h3>
-            <p class="muted">This form opens WhatsApp with your message.</p>
+            <p class="muted">This form opens WhatsApp with your message (no backend needed).</p>
 
             <form id="leadForm">
               <label>
@@ -370,10 +391,8 @@
 
         <div class="footer__right">
           <p class="muted small">© <span id="year"></span> All rights reserved.</p>
-
-          <!-- ✅ Professional creator credit -->
           <p class="muted small footerCredit">
-            Site by <a class="creditLink" href="https://wa.me/2348146592722" target="_blank" rel="noopener">Emmanuel Adubasim</a>
+            Site by <a class="creditLink" href="https://wa.me/2348146592722" target="_blank" rel="noopener">Website by Emmanuel Adubasim</a>
           </p>
         </div>
       </div>
@@ -381,9 +400,7 @@
   </main>
 
   <!-- Floating WhatsApp -->
-  <a class="floatWA" id="floatWA" href="#" aria-label="Chat on WhatsApp">
-    WhatsApp
-  </a>
+  <a class="floatWA" id="floatWA" href="#" aria-label="Chat on WhatsApp">WhatsApp</a>
 
   <script src="script.js"></script>
 </body>
