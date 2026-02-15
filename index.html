@@ -31,7 +31,6 @@
       <div class="container header__inner">
         <a class="brand" href="#" aria-label="Evertrust Autos Home">
           <div class="brand__logoWrap">
-            <!-- Put your logo here -->
             <img
               class="brand__logoImg"
               src="assets/logo/evertrust-autos-logo.jpg"
@@ -62,6 +61,34 @@
         </nav>
 
         <div class="header__actions">
+          <!-- Social links (replace href="#" with real links later) -->
+          <div class="socialMini" aria-label="Social media links">
+            <a
+              class="socialMini__link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram"
+              >IG</a
+            >
+            <a
+              class="socialMini__link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="TikTok"
+              >TT</a
+            >
+            <a
+              class="socialMini__link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="Facebook"
+              >FB</a
+            >
+          </div>
+
           <a class="btn btn--ghost" href="#contact">Get Quote</a>
           <a class="btn btn--primary" id="whatsappTop" href="#">WhatsApp</a>
           <button
@@ -83,6 +110,35 @@
           <a href="#referral" class="mobileLink">Referral</a>
           <a href="#services" class="mobileLink">Services</a>
           <a href="#contact" class="mobileLink">Contact</a>
+
+          <!-- Mobile Social links -->
+          <div class="socialBlock" aria-label="Evertrust Autos social links">
+            <a
+              class="socialBlock__link"
+              id="igLinkMobile"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >Instagram</a
+            >
+            <a
+              class="socialBlock__link"
+              id="ttLinkMobile"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >TikTok</a
+            >
+            <a
+              class="socialBlock__link"
+              id="fbLinkMobile"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >Facebook</a
+            >
+          </div>
+
           <a class="btn btn--primary mobileBtn" id="whatsappMobile" href="#"
             >Chat on WhatsApp</a
           >
@@ -191,8 +247,8 @@
               <h2>Available Cars</h2>
               <p class="muted">
                 Filter by <strong>Brand</strong>, <strong>Body Type</strong>,
-                and <strong>Condition</strong>. Each product supports
-                <strong>4+ photos</strong> and an optional
+                <strong>Condition</strong> and <strong>Price</strong>. Each
+                product supports <strong>4+ photos</strong> and an optional
                 <strong>Live Video</strong>.
               </p>
             </div>
@@ -230,6 +286,20 @@
                 <option value="all">All</option>
                 <option value="Foreign Used">Foreign Used</option>
                 <option value="NG Used">NG Used</option>
+              </select>
+            </div>
+
+            <div class="filter">
+              <label for="priceFilter">Price Range</label>
+              <select id="priceFilter">
+                <option value="all">Any</option>
+                <option value="u5">Under ₦5M</option>
+                <option value="5-10">₦5M – ₦10M</option>
+                <option value="10-15">₦10M – ₦15M</option>
+                <option value="15-20">₦15M – ₦20M</option>
+                <option value="20-25">₦20M – ₦25M</option>
+                <option value="25-35">₦25M – ₦35M</option>
+                <option value="35p">₦35M+</option>
               </select>
             </div>
 
@@ -445,9 +515,7 @@
           <div class="contact__form">
             <div class="formCard">
               <h3>Quick Enquiry</h3>
-              <p class="muted">
-                This form opens WhatsApp with your message (no backend needed).
-              </p>
+              <p class="muted">This form opens WhatsApp with your message.</p>
 
               <form id="leadForm">
                 <label>
@@ -485,6 +553,34 @@
             <p class="muted small">
               Toyota • Lexus • Mercedes • Owerri, Imo State
             </p>
+
+            <!-- Footer social links -->
+            <div class="footerSocial" aria-label="Evertrust Autos social links">
+              <a
+                class="footerSocial__link"
+                id="igLinkFooter"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+              <a
+                class="footerSocial__link"
+                id="ttLinkFooter"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                >TikTok</a
+              >
+              <a
+                class="footerSocial__link"
+                id="fbLinkFooter"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
 
           <div class="footer__right">
@@ -494,7 +590,7 @@
             <p class="muted small footerCredit">
               <a
                 class="creditLink"
-                href="https://wa.me/2348146592722"
+                href="https://wa.me/2348146592722?text=Hello%20EmmanuelAdubasim%2C%20I%20love%20your%20work%20on%20EverTrust%20Autos%20page"
                 target="_blank"
                 rel="noopener"
                 >Site by EmmanuelAdubasim</a

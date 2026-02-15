@@ -8,6 +8,13 @@ const DEALER = {
   hours: "Mon–Sat: 8:30am – 7:00pm | Sunday: Closed (Opens on Appointment)"
 };
 
+// ✅ Social links (update when you have them)
+const SOCIALS = {
+  instagram: "#",
+  tiktok: "#",
+  facebook: "#"
+};
+
 function toWhatsAppInternational(local) {
   const raw = (local || "").trim().replace(/\s+/g, "");
   if (!raw) return "";
@@ -22,14 +29,10 @@ const WHATSAPP_INT = toWhatsAppInternational(DEALER.whatsappNumberLocal);
 // ============================
 // ✅ HOW TO MARK A CAR AS SOLD
 // ============================
-// Find the car in CARS and change:
-//   status: "available"
-// to:
-//   status: "sold"
-//
-// ✅ SOLD rules:
-// - Add ONLY 2 photos in images: [ "...-1.jpg", "...-2.jpg" ]
-// - Price is hidden for sold cars; buyers DM to ask.
+// Change status to "sold" in the car item.
+// Sold rules:
+// - Add ONLY 2 photos to images
+// - Price hides automatically, and buyers DM to ask.
 // ============================
 
 function carItem({
@@ -48,14 +51,14 @@ function carItem({
   };
 }
 
-// Helper to generate image lists quickly
+// Quick generator: imgs("assets/cars/lexus-rx350-2018", 4) -> ...-1.jpg ...-4.jpg
 function imgs(base, count) {
-  // base example: "assets/cars/lexus-rx350-2018"
   return Array.from({ length: count }, (_, i) => `${base}-${i + 1}.jpg`);
 }
 
 // ============================
-// Inventory (ALL cars now have image sources)
+// Inventory (ALL cars include image sources)
+// Put all photos in: assets/cars/
 // ============================
 const CARS = [
   // ===== AVAILABLE (OLD) =====
@@ -196,7 +199,6 @@ const CARS = [
     features: ["V6 Engine", "Reverse Camera", "TV Screen", "Apple CarPlay", "Parking Assist", "First Body", "Nothing Fixed"]
   }),
 
-  // Mercedes ML350 Facelift → GLE350 (Nigerian Drive) 2013 24.5m
   carItem({
     id: "mb-ml350-2013-facelift-gle350",
     brand: "Mercedes",
@@ -209,7 +211,6 @@ const CARS = [
     images: imgs("assets/cars/mercedes-ml350-2013-facelift-gle350", 4)
   }),
 
-  // Mercedes GLE350 2016 Foreign used 33m
   carItem({
     id: "mb-gle350-2016-foreign",
     brand: "Mercedes",
@@ -222,7 +223,6 @@ const CARS = [
     images: imgs("assets/cars/mercedes-gle350-2016", 4)
   }),
 
-  // Lexus ES350 2009 Foreign used 13.5m
   carItem({
     id: "lx-es350-2009-foreign",
     brand: "Lexus",
@@ -235,7 +235,6 @@ const CARS = [
     images: imgs("assets/cars/lexus-es350-2009", 4)
   }),
 
-  // Toyota Sienna Limited 2015 Foreign used 17m
   carItem({
     id: "ty-sienna-limited-2015-foreign",
     brand: "Toyota",
@@ -243,12 +242,11 @@ const CARS = [
     model: "Sienna Limited",
     year: 2015,
     condition: "Foreign Used",
-    status: "available",
+    status: "sold",
     priceText: "₦17,000,000",
     images: imgs("assets/cars/toyota-sienna-limited-2015", 4)
   }),
 
-  // Mercedes C300 2018 Foreign used 23m
   carItem({
     id: "mb-c300-2018-foreign",
     brand: "Mercedes",
@@ -261,7 +259,6 @@ const CARS = [
     images: imgs("assets/cars/mercedes-c300-2018", 4)
   }),
 
-  // Toyota Corolla 2007 NG used 6.5m
   carItem({
     id: "ty-corolla-2007-ng-65",
     brand: "Toyota",
@@ -274,7 +271,6 @@ const CARS = [
     images: imgs("assets/cars/toyota-corolla-2007-ng-65", 4)
   }),
 
-  // Toyota Corolla 2017 Foreign used 20m
   carItem({
     id: "ty-corolla-2017-foreign",
     brand: "Toyota",
@@ -287,7 +283,6 @@ const CARS = [
     images: imgs("assets/cars/toyota-corolla-2017", 4)
   }),
 
-  // Toyota Corolla 2007 NG drive 7.5m
   carItem({
     id: "ty-corolla-2007-ng-75",
     brand: "Toyota",
@@ -300,11 +295,7 @@ const CARS = [
     images: imgs("assets/cars/toyota-corolla-2007-ng-75", 4)
   }),
 
-  // Lexus RX330 2006 NG drive 10m (this is your existing one already, but kept)
-  // If you want it separate from rx330-2006-b, tell me and I will split it.
-  // ----------------------------
-
-  // ===== SOLD CARS (2 images only) =====
+  // ===== SOLD (2 photos only) =====
   carItem({
     id: "lx-rx330-2006-foreign-sold",
     brand: "Lexus",
@@ -450,7 +441,7 @@ const CARS = [
 ];
 
 // ============================
-// Helpers / UI Logic
+// Helpers
 // ============================
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
@@ -472,10 +463,37 @@ function groupByBrand(cars) {
   return new Map([...map.entries()].sort((a, b) => a[0].localeCompare(b[0])));
 }
 
+function parsePriceNaira(priceText) {
+  if (!priceText) return null;
+  const digits = priceText.replace(/[^0-9]/g, "");
+  if (!digits) return null;
+  return Number(digits);
+}
+
+function priceRangeOk(price, rangeKey) {
+  if (rangeKey === "all") return true;
+  if (price == null) return false;
+
+  const M = 1_000_000;
+  switch (rangeKey) {
+    case "u5": return price < 5 * M;
+    case "5-10": return price >= 5 * M && price < 10 * M;
+    case "10-15": return price >= 10 * M && price < 15 * M;
+    case "15-20": return price >= 15 * M && price < 20 * M;
+    case "20-25": return price >= 20 * M && price < 25 * M;
+    case "25-35": return price >= 25 * M && price < 35 * M;
+    case "35p": return price >= 35 * M;
+    default: return true;
+  }
+}
+
 function matchesFilters(car, filters) {
   const brandOk = filters.brand === "all" || car.brand === filters.brand;
   const typeOk = filters.type === "all" || car.bodyType === filters.type;
   const conditionOk = filters.condition === "all" || car.condition === filters.condition;
+
+  const priceValue = parsePriceNaira(car.priceText);
+  const priceOk = priceRangeOk(priceValue, filters.priceRange);
 
   const q = filters.q.trim().toLowerCase();
   const qOk = !q || [
@@ -483,7 +501,7 @@ function matchesFilters(car, filters) {
     (car.features || []).join(" ")
   ].join(" ").toLowerCase().includes(q);
 
-  return brandOk && typeOk && conditionOk && qOk;
+  return brandOk && typeOk && conditionOk && priceOk && qOk;
 }
 
 function getFirstImage(car) {
@@ -492,6 +510,9 @@ function getFirstImage(car) {
   return car.images[0];
 }
 
+// ============================
+// Card + Gallery
+// ============================
 function createCarCard(car) {
   const card = document.createElement("article");
   card.className = "carCard";
@@ -499,6 +520,7 @@ function createCarCard(car) {
   const isSold = car.status === "sold";
   if (isSold) card.classList.add("isSold");
 
+  // sold: only 2 images displayed
   const displayImages = isSold ? (car.images || []).slice(0, 2) : (car.images || []);
   const mainImg = displayImages[0] || getFirstImage(car);
   const thumbs = displayImages.slice(0, 8);
@@ -568,6 +590,7 @@ function createCarCard(car) {
     </div>
   `;
 
+  // thumbs click
   const main = card.querySelector(".js-mainImg");
   const thumbsWrap = card.querySelector(".js-thumbs");
   if (thumbsWrap && thumbs.length) {
@@ -585,6 +608,9 @@ function createCarCard(car) {
   return card;
 }
 
+// ============================
+// Brand slider + auto-slide
+// ============================
 function createBrandBlock(brand, cars, { mode = "available" } = {}) {
   const block = document.createElement("section");
   block.className = "brandBlock";
@@ -656,11 +682,15 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
   return block;
 }
 
+// ============================
+// Render Available
+// ============================
 function renderInventory() {
   const filters = {
     brand: $("#brandFilter").value,
     type: $("#typeFilter").value,
     condition: $("#conditionFilter").value,
+    priceRange: $("#priceFilter").value,
     q: $("#searchInput").value
   };
 
@@ -684,6 +714,9 @@ function renderInventory() {
   }
 }
 
+// ============================
+// Render Sold
+// ============================
 function renderSold() {
   const soldCars = CARS.filter(c => c.status === "sold");
   const host = $("#soldSections");
@@ -707,6 +740,9 @@ function renderSold() {
   }
 }
 
+// ============================
+// Filters
+// ============================
 function fillBrandDropdown() {
   const brands = uniqueBrands(CARS);
   const sel = $("#brandFilter");
@@ -724,6 +760,7 @@ function setupFilters() {
   $("#brandFilter").addEventListener("change", rerender);
   $("#typeFilter").addEventListener("change", rerender);
   $("#conditionFilter").addEventListener("change", rerender);
+  $("#priceFilter").addEventListener("change", rerender);
 
   const input = $("#searchInput");
   let t = null;
@@ -736,11 +773,37 @@ function setupFilters() {
     $("#brandFilter").value = "all";
     $("#typeFilter").value = "all";
     $("#conditionFilter").value = "all";
+    $("#priceFilter").value = "all";
     $("#searchInput").value = "";
     renderInventory();
   });
 }
 
+// ============================
+// Social links set (header/mobile/footer)
+// ============================
+function initSocialLinks() {
+  // Mobile ids exist; header links are direct in HTML (placeholders)
+  const igM = $("#igLinkMobile");
+  const ttM = $("#ttLinkMobile");
+  const fbM = $("#fbLinkMobile");
+
+  const igF = $("#igLinkFooter");
+  const ttF = $("#ttLinkFooter");
+  const fbF = $("#fbLinkFooter");
+
+  if (igM) igM.href = SOCIALS.instagram;
+  if (ttM) ttM.href = SOCIALS.tiktok;
+  if (fbM) fbM.href = SOCIALS.facebook;
+
+  if (igF) igF.href = SOCIALS.instagram;
+  if (ttF) ttF.href = SOCIALS.tiktok;
+  if (fbF) fbF.href = SOCIALS.facebook;
+}
+
+// ============================
+// WhatsApp Buttons + Static Text
+// ============================
 function setupWhatsAppButtons() {
   const baseMsg = `Hi ${DEALER.name}, I’m interested in your available cars. Please share current stock and prices.`;
   const href = waLink(baseMsg);
@@ -857,66 +920,11 @@ function initStaticText() {
   $("#hoursCardText").textContent = DEALER.hours;
 }
 
-function renderAll() {
-  renderInventory();
-  renderSold();
-}
-
-function renderInventory() {
-  const filters = {
-    brand: $("#brandFilter").value,
-    type: $("#typeFilter").value,
-    condition: $("#conditionFilter").value,
-    q: $("#searchInput").value
-  };
-
-  const availableCars = CARS.filter(c => c.status !== "sold");
-  const filtered = availableCars.filter(c => matchesFilters(c, filters));
-  const grouped = groupByBrand(filtered);
-
-  const host = $("#brandSections");
-  host.innerHTML = "";
-
-  if (filtered.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "card";
-    empty.innerHTML = `<h3>No cars found</h3><p class="muted">Try changing filters or search keywords.</p>`;
-    host.appendChild(empty);
-    return;
-  }
-
-  for (const [brand, cars] of grouped.entries()) {
-    host.appendChild(createBrandBlock(brand, cars, { mode: "available" }));
-  }
-}
-
-function renderSold() {
-  const soldCars = CARS.filter(c => c.status === "sold");
-  const host = $("#soldSections");
-  host.innerHTML = "";
-
-  if (soldCars.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "card";
-    empty.innerHTML = `
-      <h3>Sold cars will soon be displayed</h3>
-      <p class="muted">Once a car is sold, we’ll show it here with 2 photos. Buyers can DM to ask the price.</p>
-      <div class="soldHint"><strong>How to mark sold:</strong> Change <code>status: "available"</code> to <code>status: "sold"</code> in script.js then push to GitHub.</div>
-    `;
-    host.appendChild(empty);
-    return;
-  }
-
-  const grouped = groupByBrand(soldCars);
-  for (const [brand, cars] of grouped.entries()) {
-    host.appendChild(createBrandBlock(brand, cars, { mode: "sold" }));
-  }
-}
-
 // ============================
 // INIT
 // ============================
 fillBrandDropdown();
+initSocialLinks();
 setupWhatsAppButtons();
 setupFeatured();
 setupMobileMenu();
@@ -924,4 +932,5 @@ setupLeadForm();
 setupReferralForm();
 setupFilters();
 initStaticText();
-renderAll();
+renderInventory();
+renderSold();
