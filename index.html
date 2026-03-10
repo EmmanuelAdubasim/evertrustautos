@@ -46,9 +46,9 @@
 
           <div class="brand__text">
             <span class="brand__name">Evertrust Autos</span>
-            <span class="brand__tag"
-              >Luxury • Affordable • Verified Options</span
-            >
+            <span class="brand__tag">
+              Luxury • Affordable • Verified Options
+            </span>
           </div>
         </a>
 
@@ -57,11 +57,11 @@
           <a href="#sold">Sold</a>
           <a href="#referral">Referral</a>
           <a href="#services">Services</a>
+          <a href="#extras">Parts & Hire</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="header__actions">
-          <!-- Social links (replace href="#" with real links later) -->
           <div class="socialMini" aria-label="Social media links">
             <a
               class="socialMini__link"
@@ -73,7 +73,7 @@
             >
             <a
               class="socialMini__link"
-              href="#"
+              href="https://www.tiktok.com/@evertrustautos?_r=1&_t=ZS-94YROBoCDKR"
               target="_blank"
               rel="noopener"
               aria-label="TikTok"
@@ -109,9 +109,9 @@
           <a href="#sold" class="mobileLink">Sold</a>
           <a href="#referral" class="mobileLink">Referral</a>
           <a href="#services" class="mobileLink">Services</a>
+          <a href="#extras" class="mobileLink">Parts & Hire</a>
           <a href="#contact" class="mobileLink">Contact</a>
 
-          <!-- Mobile Social links -->
           <div class="socialBlock" aria-label="Evertrust Autos social links">
             <a
               class="socialBlock__link"
@@ -478,6 +478,111 @@
         </div>
       </section>
 
+      <!-- Auto Parts & Car Hire -->
+      <section class="section" id="extras">
+        <div class="container">
+          <div class="sectionHead">
+            <div>
+              <h2>Auto Parts, Accessories & Car Hire</h2>
+              <p class="muted">
+                Evertrust Autos now offers
+                <strong>Auto Parts & Accessories</strong>
+                and also <strong>Car Hire for Events</strong>. All enquiries and
+                orders are handled via WhatsApp for fast confirmation.
+              </p>
+            </div>
+            <div class="sectionHead__actions">
+              <a class="btn btn--primary" id="partsWhatsAppBtn" href="#"
+                >Parts Enquiry (WhatsApp)</a
+              >
+            </div>
+          </div>
+
+          <div class="extrasGrid">
+            <article class="extrasCard">
+              <div class="extrasCard__media">
+                <img
+                  src="assets/media/auto-parts.jpg"
+                  alt="Evertrust Autos auto parts and accessories"
+                  loading="lazy"
+                  onerror="this.src='assets/cars/placeholder.jpg'"
+                />
+              </div>
+
+              <div class="extrasCard__body">
+                <h3>Auto Parts & Accessories Sales</h3>
+                <p class="muted">
+                  We supply quality
+                  <strong>engine oils, tyres, rims, brake pads</strong>
+                  and other genuine car parts. For availability, pricing and
+                  orders — DM us on WhatsApp.
+                </p>
+
+                <div class="pillRow">
+                  <span class="pillTag">Engine Oils</span>
+                  <span class="pillTag">Tyres</span>
+                  <span class="pillTag">Rims</span>
+                  <span class="pillTag">Brake Pads</span>
+                  <span class="pillTag">Car Parts</span>
+                </div>
+
+                <a class="btn btn--primary btn--full" id="partsWhatsApp" href="#"
+                  >Enquire / Order on WhatsApp</a
+                >
+              </div>
+            </article>
+
+            <article class="extrasCard">
+              <div class="extrasCard__body">
+                <h3>Car Hire for Special Events</h3>
+                <p class="muted">
+                  Hire a car of your choice for
+                  <strong>weddings, ceremonies, business trips</strong>
+                  and other special occasions. Send the car you want and we’ll
+                  reply with the <strong>price + conditions</strong>.
+                </p>
+
+                <form class="hireForm" id="hireForm">
+                  <label>
+                    Car you want to hire
+                    <input
+                      name="hireCar"
+                      required
+                      placeholder="e.g. Lexus RX350 2018 / Mercedes GLE350"
+                    />
+                  </label>
+
+                  <label>
+                    Event date (optional)
+                    <input name="hireDate" placeholder="e.g. 12 April 2026" />
+                  </label>
+
+                  <label>
+                    Location (optional)
+                    <input
+                      name="hireLocation"
+                      placeholder="e.g. Owerri / Port Harcourt"
+                    />
+                  </label>
+
+                  <button class="btn btn--primary btn--full" type="submit">
+                    Request Hire Price on WhatsApp
+                  </button>
+
+                  <a
+                    class="btn btn--ghost btn--full"
+                    id="hireWhatsAppQuick"
+                    href="#"
+                  >
+                    Quick Hire Enquiry
+                  </a>
+                </form>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact -->
       <section class="section contact" id="contact">
         <div class="container contact__inner">
@@ -554,7 +659,6 @@
               Toyota • Lexus • Mercedes • Owerri, Imo State
             </p>
 
-            <!-- Footer social links -->
             <div class="footerSocial" aria-label="Evertrust Autos social links">
               <a
                 class="footerSocial__link"

@@ -8,10 +8,10 @@ const DEALER = {
   hours: "Mon–Sat: 8:30am – 7:00pm | Sunday: Closed (Opens on Appointment)"
 };
 
-// ✅ Social links (update when you have them)
+// Social links
 const SOCIALS = {
   instagram: "#",
-  tiktok: "#",
+  tiktok: "https://www.tiktok.com/@evertrustautos?_r=1&_t=ZS-94YROBoCDKR",
   facebook: "#"
 };
 
@@ -27,41 +27,46 @@ function toWhatsAppInternational(local) {
 const WHATSAPP_INT = toWhatsAppInternational(DEALER.whatsappNumberLocal);
 
 // ============================
-// ✅ HOW TO MARK A CAR AS SOLD
+// Car Builder
 // ============================
-// Change status to "sold" in the car item.
-// Sold rules:
-// - Add ONLY 2 photos to images
-// - Price hides automatically, and buyers DM to ask.
-// ============================
-
 function carItem({
-  id, brand, bodyType, model, year,
-  condition, status = "available",
+  id,
+  brand,
+  bodyType,
+  model,
+  year,
+  condition,
+  status = "available",
   priceText = "",
   images = [],
   videoUrl = "",
   features = []
 }) {
   return {
-    id, brand, bodyType, model, year,
-    condition, status, priceText,
-    images, videoUrl, features,
+    id,
+    brand,
+    bodyType,
+    model,
+    year,
+    condition,
+    status,
+    priceText,
+    images,
+    videoUrl,
+    features,
     title: `${brand} ${model} (${year})`
   };
 }
 
-// Quick generator: imgs("assets/cars/lexus-rx350-2018", 4) -> ...-1.jpg ...-4.jpg
 function imgs(base, count) {
   return Array.from({ length: count }, (_, i) => `${base}-${i + 1}.jpg`);
 }
 
 // ============================
-// Inventory (ALL cars include image sources)
-// Put all photos in: assets/cars/
+// FULL INVENTORY
 // ============================
 const CARS = [
-  // ===== AVAILABLE (OLD) =====
+  // ===== AVAILABLE =====
   carItem({
     id: "lx-rx350-2018",
     brand: "Lexus",
@@ -146,7 +151,6 @@ const CARS = [
     images: imgs("assets/cars/rx330-2006-b", 4)
   }),
 
-  // ===== AVAILABLE (NEW) =====
   carItem({
     id: "ty-avalon-xle-2014",
     brand: "Toyota",
@@ -157,7 +161,15 @@ const CARS = [
     status: "available",
     priceText: "₦18,500,000",
     images: imgs("assets/cars/toyota-avalon-xle-2014", 4),
-    features: ["V6 Engine", "Reverse Camera", "TV Screen", "Push Start", "Parking Sensor", "First Body", "Nothing Fixed"]
+    features: [
+      "V6 Engine",
+      "Reverse Camera",
+      "TV Screen",
+      "Push Start",
+      "Parking Sensor",
+      "First Body",
+      "Nothing Fixed"
+    ]
   }),
 
   carItem({
@@ -196,7 +208,15 @@ const CARS = [
     status: "available",
     priceText: "₦24,800,000",
     images: imgs("assets/cars/lexus-es350-2014", 4),
-    features: ["V6 Engine", "Reverse Camera", "TV Screen", "Apple CarPlay", "Parking Assist", "First Body", "Nothing Fixed"]
+    features: [
+      "V6 Engine",
+      "Reverse Camera",
+      "TV Screen",
+      "Apple CarPlay",
+      "Parking Assist",
+      "First Body",
+      "Nothing Fixed"
+    ]
   }),
 
   carItem({
@@ -295,7 +315,25 @@ const CARS = [
     images: imgs("assets/cars/toyota-corolla-2007-ng-75", 4)
   }),
 
-  // ===== SOLD (2 photos only) =====
+  carItem({
+    id: "ty-sienna-ce-2007-foreign",
+    brand: "Toyota",
+    bodyType: "Minivan",
+    model: "Sienna CE",
+    year: 2007,
+    condition: "Foreign Used",
+    status: "available",
+    priceText: "₦10,000,000",
+    images: imgs("assets/cars/toyota-sienna-ce-2007", 4),
+    features: [
+      "3MZ - V6",
+      "Clean Fabric Interior",
+      "Best Engine for Transport Business",
+      "Slightly Negotiable"
+    ]
+  }),
+
+  // ===== SOLD =====
   carItem({
     id: "lx-rx330-2006-foreign-sold",
     brand: "Lexus",
@@ -451,7 +489,9 @@ function waLink(message) {
 }
 
 function uniqueBrands(cars) {
-  return [...new Set(cars.map(c => c.brand))].sort((a, b) => a.localeCompare(b));
+  return [...new Set(cars.map((c) => c.brand))].sort((a, b) =>
+    a.localeCompare(b)
+  );
 }
 
 function groupByBrand(cars) {
@@ -476,30 +516,49 @@ function priceRangeOk(price, rangeKey) {
 
   const M = 1_000_000;
   switch (rangeKey) {
-    case "u5": return price < 5 * M;
-    case "5-10": return price >= 5 * M && price < 10 * M;
-    case "10-15": return price >= 10 * M && price < 15 * M;
-    case "15-20": return price >= 15 * M && price < 20 * M;
-    case "20-25": return price >= 20 * M && price < 25 * M;
-    case "25-35": return price >= 25 * M && price < 35 * M;
-    case "35p": return price >= 35 * M;
-    default: return true;
+    case "u5":
+      return price < 5 * M;
+    case "5-10":
+      return price >= 5 * M && price < 10 * M;
+    case "10-15":
+      return price >= 10 * M && price < 15 * M;
+    case "15-20":
+      return price >= 15 * M && price < 20 * M;
+    case "20-25":
+      return price >= 20 * M && price < 25 * M;
+    case "25-35":
+      return price >= 25 * M && price < 35 * M;
+    case "35p":
+      return price >= 35 * M;
+    default:
+      return true;
   }
 }
 
 function matchesFilters(car, filters) {
   const brandOk = filters.brand === "all" || car.brand === filters.brand;
   const typeOk = filters.type === "all" || car.bodyType === filters.type;
-  const conditionOk = filters.condition === "all" || car.condition === filters.condition;
+  const conditionOk =
+    filters.condition === "all" || car.condition === filters.condition;
 
   const priceValue = parsePriceNaira(car.priceText);
   const priceOk = priceRangeOk(priceValue, filters.priceRange);
 
   const q = filters.q.trim().toLowerCase();
-  const qOk = !q || [
-    car.title, car.brand, car.model, car.bodyType, car.condition, String(car.year),
-    (car.features || []).join(" ")
-  ].join(" ").toLowerCase().includes(q);
+  const qOk =
+    !q ||
+    [
+      car.title,
+      car.brand,
+      car.model,
+      car.bodyType,
+      car.condition,
+      String(car.year),
+      (car.features || []).join(" ")
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(q);
 
   return brandOk && typeOk && conditionOk && priceOk && qOk;
 }
@@ -520,7 +579,6 @@ function createCarCard(car) {
   const isSold = car.status === "sold";
   if (isSold) card.classList.add("isSold");
 
-  // sold: only 2 images displayed
   const displayImages = isSold ? (car.images || []).slice(0, 2) : (car.images || []);
   const mainImg = displayImages[0] || getFirstImage(car);
   const thumbs = displayImages.slice(0, 8);
@@ -537,15 +595,23 @@ function createCarCard(car) {
     : `Hi ${DEALER.name}, I'm interested in: ${car.title} (${car.condition}). Price: ${car.priceText}. Please confirm availability and send details.`;
 
   const thumbsHTML = thumbs.length
-    ? thumbs.map((src, i) => `
+    ? thumbs
+        .map(
+          (src, i) => `
       <div class="thumb ${i === 0 ? "isActive" : ""}" data-src="${src}">
         <img src="${src}" alt="${car.title} photo ${i + 1}" loading="lazy" onerror="this.src='assets/cars/placeholder.jpg'">
-      </div>`).join("")
+      </div>`
+        )
+        .join("")
     : `<span class="muted small">${isSold ? "Upload 2 photos for sold cars" : "Upload 4+ photos to enable gallery"}</span>`;
 
-  const featuresHTML = (!isSold && car.features && car.features.length)
-    ? `<div class="metaRow">${car.features.slice(0, 4).map(f => `<span>• ${f}</span>`).join(" ")}</div>`
-    : "";
+  const featuresHTML =
+    !isSold && car.features && car.features.length
+      ? `<div class="metaRow">${car.features
+          .slice(0, 4)
+          .map((f) => `<span>• ${f}</span>`)
+          .join(" ")}</div>`
+      : "";
 
   card.innerHTML = `
     <div class="gallery">
@@ -590,7 +656,6 @@ function createCarCard(car) {
     </div>
   `;
 
-  // thumbs click
   const main = card.querySelector(".js-mainImg");
   const thumbsWrap = card.querySelector(".js-thumbs");
   if (thumbsWrap && thumbs.length) {
@@ -600,7 +665,7 @@ function createCarCard(car) {
       const src = thumb.dataset.src;
       if (!src) return;
       main.src = src;
-      thumbsWrap.querySelectorAll(".thumb").forEach(t => t.classList.remove("isActive"));
+      thumbsWrap.querySelectorAll(".thumb").forEach((t) => t.classList.remove("isActive"));
       thumb.classList.add("isActive");
     });
   }
@@ -615,9 +680,10 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
   const block = document.createElement("section");
   block.className = "brandBlock";
 
-  const subtitle = mode === "sold"
-    ? `${cars.length} sold car(s) • DM to ask price`
-    : `${cars.length} option(s) • Auto-scroll enabled`;
+  const subtitle =
+    mode === "sold"
+      ? `${cars.length} sold car(s) • DM to ask price`
+      : `${cars.length} option(s) • Auto-scroll enabled`;
 
   block.innerHTML = `
     <div class="brandBlock__head">
@@ -636,7 +702,7 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
   `;
 
   const track = block.querySelector(".track");
-  cars.forEach(c => track.appendChild(createCarCard(c)));
+  cars.forEach((c) => track.appendChild(createCarCard(c)));
 
   const prevBtn = block.querySelector(".js-prev");
   const nextBtn = block.querySelector(".js-next");
@@ -647,12 +713,16 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
     return firstCard.getBoundingClientRect().width + 12;
   };
 
-  prevBtn.addEventListener("click", () => track.scrollBy({ left: -scrollByAmount(), behavior: "smooth" }));
-  nextBtn.addEventListener("click", () => track.scrollBy({ left: scrollByAmount(), behavior: "smooth" }));
+  prevBtn.addEventListener("click", () =>
+    track.scrollBy({ left: -scrollByAmount(), behavior: "smooth" })
+  );
+  nextBtn.addEventListener("click", () =>
+    track.scrollBy({ left: scrollByAmount(), behavior: "smooth" })
+  );
 
-  // Auto-slide only for available
   if (mode !== "sold") {
     let autoTimer = null;
+
     const startAuto = () => {
       if (autoTimer) return;
       autoTimer = setInterval(() => {
@@ -662,6 +732,7 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
         else track.scrollBy({ left: scrollByAmount(), behavior: "smooth" });
       }, 2800);
     };
+
     const stopAuto = () => {
       if (autoTimer) clearInterval(autoTimer);
       autoTimer = null;
@@ -672,9 +743,12 @@ function createBrandBlock(brand, cars, { mode = "available" } = {}) {
     track.addEventListener("touchstart", stopAuto, { passive: true });
     track.addEventListener("touchend", startAuto);
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => e.isIntersecting ? startAuto() : stopAuto());
-    }, { threshold: 0.25 });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? startAuto() : stopAuto()));
+      },
+      { threshold: 0.25 }
+    );
 
     io.observe(block);
   }
@@ -694,8 +768,8 @@ function renderInventory() {
     q: $("#searchInput").value
   };
 
-  const availableCars = CARS.filter(c => c.status !== "sold");
-  const filtered = availableCars.filter(c => matchesFilters(c, filters));
+  const availableCars = CARS.filter((c) => c.status !== "sold");
+  const filtered = availableCars.filter((c) => matchesFilters(c, filters));
   const grouped = groupByBrand(filtered);
 
   const host = $("#brandSections");
@@ -704,7 +778,8 @@ function renderInventory() {
   if (filtered.length === 0) {
     const empty = document.createElement("div");
     empty.className = "card";
-    empty.innerHTML = `<h3>No cars found</h3><p class="muted">Try changing filters or search keywords.</p>`;
+    empty.innerHTML =
+      `<h3>No cars found</h3><p class="muted">Try changing filters or search keywords.</p>`;
     host.appendChild(empty);
     return;
   }
@@ -718,7 +793,7 @@ function renderInventory() {
 // Render Sold
 // ============================
 function renderSold() {
-  const soldCars = CARS.filter(c => c.status === "sold");
+  const soldCars = CARS.filter((c) => c.status === "sold");
   const host = $("#soldSections");
   host.innerHTML = "";
 
@@ -746,7 +821,7 @@ function renderSold() {
 function fillBrandDropdown() {
   const brands = uniqueBrands(CARS);
   const sel = $("#brandFilter");
-  brands.forEach(b => {
+  brands.forEach((b) => {
     const opt = document.createElement("option");
     opt.value = b;
     opt.textContent = b;
@@ -780,10 +855,9 @@ function setupFilters() {
 }
 
 // ============================
-// Social links set (header/mobile/footer)
+// Social links
 // ============================
 function initSocialLinks() {
-  // Mobile ids exist; header links are direct in HTML (placeholders)
   const igM = $("#igLinkMobile");
   const ttM = $("#ttLinkMobile");
   const fbM = $("#fbLinkMobile");
@@ -802,7 +876,7 @@ function initSocialLinks() {
 }
 
 // ============================
-// WhatsApp Buttons + Static Text
+// WhatsApp Buttons
 // ============================
 function setupWhatsAppButtons() {
   const baseMsg = `Hi ${DEALER.name}, I’m interested in your available cars. Please share current stock and prices.`;
@@ -830,7 +904,7 @@ function setupWhatsAppButtons() {
 }
 
 function setupFeatured() {
-  const available = CARS.filter(c => c.status !== "sold");
+  const available = CARS.filter((c) => c.status !== "sold");
   const car = available[0] || CARS[0];
   if (!car) return;
 
@@ -844,6 +918,9 @@ function setupFeatured() {
   );
 }
 
+// ============================
+// Mobile Menu
+// ============================
 function setupMobileMenu() {
   const btn = $("#menuBtn");
   const menu = $("#mobileMenu");
@@ -859,7 +936,7 @@ function setupMobileMenu() {
     }
   });
 
-  $$(".mobileLink").forEach(link => {
+  $$(".mobileLink").forEach((link) => {
     link.addEventListener("click", () => {
       menu.setAttribute("hidden", "");
       btn.setAttribute("aria-expanded", "false");
@@ -867,8 +944,13 @@ function setupMobileMenu() {
   });
 }
 
+// ============================
+// Forms
+// ============================
 function setupLeadForm() {
   const form = $("#leadForm");
+  if (!form) return;
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const fd = new FormData(form);
@@ -912,6 +994,117 @@ function setupReferralForm() {
   });
 }
 
+// ============================
+// Auto Parts + Car Hire
+// ============================
+function setupPartsAndHire() {
+  const partsMsg =
+    `Hi ${DEALER.name}, I want to enquire about Auto Parts & Accessories.\n` +
+    `Please confirm availability + price for: (engine oil / tyres / rims / brake pads / other parts).\n` +
+    `My car brand/model: ____\nQuantity: ____`;
+
+  const partsBtn = $("#partsWhatsApp");
+  const partsBtnTop = $("#partsWhatsAppBtn");
+  if (partsBtn) partsBtn.href = waLink(partsMsg);
+  if (partsBtnTop) partsBtnTop.href = waLink(partsMsg);
+
+  const quickHireMsg =
+    `Hi ${DEALER.name}, I want to HIRE a car for an event.\n` +
+    `Car choice: ____\nEvent date: ____\nLocation: ____\n` +
+    `Please share price and conditions for hire.`;
+
+  const hireQuick = $("#hireWhatsAppQuick");
+  if (hireQuick) hireQuick.href = waLink(quickHireMsg);
+
+  const hireForm = $("#hireForm");
+  if (hireForm) {
+    hireForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(hireForm);
+
+      const car = (fd.get("hireCar") || "").toString().trim();
+      const date = (fd.get("hireDate") || "").toString().trim();
+      const loc = (fd.get("hireLocation") || "").toString().trim();
+
+      const msg =
+        `Hi ${DEALER.name}, I want to HIRE a car for an event.\n\n` +
+        `Car choice: ${car}\n` +
+        (date ? `Event date: ${date}\n` : "") +
+        (loc ? `Location: ${loc}\n` : "") +
+        `\nPlease share the price and conditions for the hire.`;
+
+      window.open(waLink(msg), "_blank");
+      hireForm.reset();
+    });
+  }
+}
+
+// ============================
+// Birthday Popup (March 10)
+// ============================
+function showBirthdayPopupIfNeeded() {
+  const today = new Date();
+  const month = today.getMonth(); // March = 2
+  const date = today.getDate();
+
+  if (month !== 2 || date !== 10) return;
+
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.inset = "0";
+  overlay.style.background = "rgba(11,26,42,0.55)";
+  overlay.style.display = "flex";
+  overlay.style.alignItems = "center";
+  overlay.style.justifyContent = "center";
+  overlay.style.padding = "16px";
+  overlay.style.zIndex = "9999";
+
+  const popup = document.createElement("div");
+  popup.style.maxWidth = "420px";
+  popup.style.width = "100%";
+  popup.style.background = "#ffffff";
+  popup.style.borderRadius = "22px";
+  popup.style.padding = "24px";
+  popup.style.boxShadow = "0 18px 55px rgba(8,20,40,.20)";
+  popup.style.textAlign = "center";
+
+  popup.innerHTML = `
+    <div style="font-size:40px; margin-bottom:10px;">🎉</div>
+    <h2 style="margin:0 0 10px; color:#0b1a2a;">Happy Birthday to the CEO of Evertrust Autos!</h2>
+    <p style="margin:0 0 18px; color:#526477; line-height:1.6;">
+      Today is a special day. We celebrate grace, growth, success and many more wins ahead.
+      Wishing him a joyful and prosperous new year.
+    </p>
+    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <a
+        href="${waLink("Happy Birthday to the CEO of Evertrust Autos! Wishing you more grace, favour, success and long life.")}"
+        style="display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px; background:#0b5ed7; color:#fff; font-weight:800; text-decoration:none;"
+      >
+        Send Birthday Wish
+      </a>
+      <button
+        id="closeBirthdayPopup"
+        style="padding:12px 14px; border-radius:14px; border:1px solid rgba(11,26,42,.12); background:#fff; color:#0b1a2a; font-weight:800; cursor:pointer;"
+      >
+        Close
+      </button>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  const closeBtn = popup.querySelector("#closeBirthdayPopup");
+  if (closeBtn) closeBtn.addEventListener("click", () => overlay.remove());
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+}
+
+// ============================
+// Static Text
+// ============================
 function initStaticText() {
   $("#year").textContent = new Date().getFullYear();
   $("#addressText").textContent = DEALER.address;
@@ -931,6 +1124,8 @@ setupMobileMenu();
 setupLeadForm();
 setupReferralForm();
 setupFilters();
+setupPartsAndHire();
 initStaticText();
 renderInventory();
 renderSold();
+showBirthdayPopupIfNeeded();
